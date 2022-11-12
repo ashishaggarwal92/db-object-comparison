@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop
+   http://www.springframework.org/schema/aop/spring-aop.xsd
+   http://www.springframework.org/schema/batch
+   http://www.springframework.org/schema/batch/spring-batch.xsd
+   http://www.springframework.org/schema/jee
+   http://www.springframework.org/schema/jee/spring-jee.xsd
+   http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd
+   http://www.springframework.org/schema/util
+   http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+	
+	<batch:job id="test.job1.db.object.comparison">
+		
+
+		<batch:step id="test.job1.compare.stored.procedure.step" next="test.job1.compare.function.step">
+			<batch:tasklet
+				ref="test.job1.compare.stored.procedure.tasklet" />
+			<batch:listeners>
+				<batch:listener ref="customStepListener" />
+			</batch:listeners>
+		</batch:step>
+		
+		<batch:step id="test.job1.compare.function.step" next="test.job1.compare.view.step">
+			<batch:tasklet
+				ref="test.job1.compare.function.tasklet" />
+			<batch:listeners>
+				<batch:listener ref="customStepListener" />
+			</batch:listeners>
+		</batch:step>
+		
+		<batch:step id="test.job1.compare.view.step" next="test.job1.compare.sequence.step">
+			<batch:tasklet
+				ref="test.job1.compare.view.tasklet" />
+			<batch:listeners>
+				<batch:listener ref="customStepListener" />
+			</batch:listeners>
+		</batch:step>
+		
+		<batch:step id="test.job1.compare.sequence.step" next="test.job1.compare.trigger.step">
+			<batch:tasklet
+				ref="test.job1.compare.sequence.tasklet" />
+			<batch:listeners>
+				<batch:listener ref="customStepListener" />
+			</batch:listeners>
+		</batch:step>
+		
+		<batch:step id="test.job1.compare.trigger.step" next="test.job1.compare.table.step">
+			<batch:tasklet
+				ref="test.job1.compare.trigger.tasklet" />
+			<batch:listeners>
+				<batch:listener ref="customStepListener" />
+			</batch:listeners>
+		</batch:step>
+		
+		<batch:step id="test.job1.compare.table.step" next="test.job1.compare.table.object.column.step">
+			<batch:tasklet
+				ref="test.job1.compare.table.tasklet" />
+			<batch:listeners>
+				<batch:listener ref="customStepListener" />
+			</batch:listeners>
+		</batch:step>
+
+		<batch:step id="test.job1.compare.table.object.column.step" next="test.job1.compare.table.object.pk.step">
+			<batch:tasklet
+				ref="test.job1.compare.table.object.column.tasklet" />
+			<batch:listeners>
+				<batch:listener ref="customStepListener" />
+			</batch:listeners>
+		</batch:step>
+		
+		<batch:step id="test.job1.compare.table.object.pk.step">
+			<batch:tasklet
+				ref="test.job1.compare.table.object.pk.tasklet" />
+			<batch:listeners>
+				<batch:listener ref="customStepListener" />
+			</batch:listeners>
+		</batch:step>
+
+
+		<batch:listeners>
+			<batch:listener ref="customJobExecutionListener" />
+		</batch:listeners>
+
+	</batch:job>
+
+</beans>   

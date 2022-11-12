@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: "db-object-comparison"
+  dbconfig:
+    location: "file:/D:/gitHub/db-object-comparison/src/test/resources/dbConfig.yaml"
+  jpa:
+    #database-platform: org.hibernate.dialect.Oracle12cDialect
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    open-in-view: false
+    
+  batch:
+    jdbc.initialize-schema: "always"
+    table.prefix: "BATCH_4_"
+    
+management:
+  endpoint.web.exposure.include: heapdump, threaddump, caches, metrices
+  port: 8081
+  
+  
+task.executor:
+  core.pool.size: 35
+  max.pool.size: 50
+  queue.capacity: 35
+  concurrency.limit: 20
+    
+enable.matching:
+  function: true
+  view: true
+  sequence: true
+  trigger: true
+  stored.procedure: true
+  table: true
+  table.object:
+    column: true
+    pk: true
+    fk: true
+    fkr: true
+
+
+
+
+
+ 

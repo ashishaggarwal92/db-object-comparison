@@ -1,0 +1,8 @@
+File Compare Starts for file : D:\WS\spring-boot-batch\src\test\resources\fileLocation\compare\Left_File.txt and : D:\WS\spring-boot-batch\src\test\resources\fileLocation\compare\Right_File.txt
+Total Matched Records in Both Files : 3
+Left_File.txt : Surplus Records : 1 [16]
+Right_File.txt : Surplus Records : 1 [17]
+Total UnMatched Records in Both Files On Matched Key : 2
+UnMatched Records per Key
+13>>>>>>>>>>(13|aaac|102, 13|aacc|102)
+14>>>>>>>>>>(14|aaad|103, 14|aadd|103)
